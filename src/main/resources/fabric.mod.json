@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "idwtialsimmoedm",
+  "version": "${version}",
+
+  "name": "idwtialsimmoedm",
+  "description": "I didn't want to install a library so I made my own Enchantment Descriptions mod",
+  "authors": [
+    "glisco"
+  ],
+
+  "contact": {
+    "issues": "https://github.com/gliscowo/idwtialsimmoedm/issues",
+    "sources": "https://github.com/gliscowo/idwtialsimmoedm",
+    "homepage": "https://www.curseforge.com/minecraft/gliscowo/idwtialsimmoedm"
+  },
+
+  "license": "MIT",
+  "icon": "assets/idwtialsimmoedm/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "io.wispforest.idwtialsimmoedm.IdwtialsimmoedmClient"
+    ],
+    "rei_client": [
+      "io.wispforest.idwtialsimmoedm.rei.IdwtialsimmoedmReiPlugin"
+    ],
+    "modmenu": [
+      "io.wispforest.idwtialsimmoedm.cloth.IdwtialsimmoedmModMenuHook"
+    ]
+  },
+
+  "depends": {
+    "fabricloader": "*",
+    "fabric": "*",
+    "minecraft": ">=1.19-beta.4"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/xrwHKktV2d"
+      }
+    }
+  }
+}
