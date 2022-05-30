@@ -2,7 +2,7 @@
 
 <!--[![curseforge](https://img.shields.io/badge/-CurseForge-gray?style=for-the-badge&logo=curseforge&labelColor=orange)](https://www.curseforge.com/minecraft/mc-mods/things-fabric)-->
 [![modrinth](https://img.shields.io/badge/-modrinth-gray?style=for-the-badge&labelColor=green&labelWidth=15&logo=appveyor&logoColor=white)](https://modrinth.com/mod/idwtialsimmoedm)
-[![release](https://img.shields.io/github/v/release/glisco03/things?logo=github&style=for-the-badge)](https://github.com/gliscowo/idwtialsimmoedm/releases)
+[![release](https://img.shields.io/github/v/release/gliscowo/idwtialsimmoedm?logo=github&style=for-the-badge)](https://github.com/gliscowo/idwtialsimmoedm/releases)
 [![discord](https://img.shields.io/discord/825828008644313089?label=wisp%20forest&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/xrwHKktV2d)
 
 <center><img src="https://i.imgur.com/lDciZFI.png" alt="tooltip example" width=600></center>
