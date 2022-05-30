@@ -5,6 +5,7 @@ import com.terraformersmc.modmenu.api.ModMenuApi;
 import io.wispforest.idwtialsimmoedm.IdwtialsimmoedmConfig;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 
 import java.lang.reflect.Field;
 import java.util.function.Consumer;
@@ -18,7 +19,7 @@ public class IdwtialsimmoedmModMenuHook implements ModMenuApi {
         return parent -> {
             final var builder = ConfigBuilder.create()
                     .setParentScreen(parent)
-                    .setTitle(Text.translatable("text.idwtialsimmoedm.config.title"));
+                    .setTitle(new TranslatableText("text.idwtialsimmoedm.config.title"));
 
             final var entryBuilder = builder.entryBuilder();
             final var configInstance = IdwtialsimmoedmConfig.get();
@@ -42,7 +43,7 @@ public class IdwtialsimmoedmModMenuHook implements ModMenuApi {
     }
 
     private static Text fieldName(Field field)  {
-        return Text.translatable("text.idwtialsimmoedm.config.field." + field.getName());
+        return new TranslatableText("text.idwtialsimmoedm.config.field." + field.getName());
     }
 
     @SuppressWarnings("unchecked")

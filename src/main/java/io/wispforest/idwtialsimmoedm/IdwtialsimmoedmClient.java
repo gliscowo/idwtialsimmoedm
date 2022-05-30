@@ -12,9 +12,9 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableTextContent;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Language;
@@ -68,7 +68,7 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
 
             for (var enchantment : enchantments) {
                 for (int i = 0; i < lines.size(); i++) {
-                    if (!(lines.get(i).getContent() instanceof TranslatableTextContent text)) continue;
+                    if (!(lines.get(i) instanceof TranslatableText text)) continue;
                     if (!text.getKey().equals(enchantment.getTranslationKey())) continue;
 
                     for (var descLine : getDescription(enchantment)) {
@@ -85,13 +85,13 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
             final var wrappedLines = WordUtils.wrap(Language.getInstance().get(enchantment.getTranslationKey() + ".desc"), 35).split("\n");
             final var output = new ArrayList<MutableText>();
 
-            output.add(Text.literal(IdwtialsimmoedmConfig.get().descriptionPrefix).formatted(Formatting.GRAY)
-                    .append(Text.literal(wrappedLines[0]).formatted(Formatting.DARK_GRAY)));
+            output.add(new LiteralText(IdwtialsimmoedmConfig.get().descriptionPrefix).formatted(Formatting.GRAY)
+                    .append(new LiteralText(wrappedLines[0]).formatted(Formatting.DARK_GRAY)));
 
             if (wrappedLines.length > 1) {
                 for (int i = 1; i < wrappedLines.length; i++) {
-                    output.add(0, Text.literal(IdwtialsimmoedmConfig.get().descriptionIndent).formatted(Formatting.GRAY)
-                            .append(Text.literal(wrappedLines[i]).formatted(Formatting.DARK_GRAY)));
+                    output.add(0, new LiteralText(IdwtialsimmoedmConfig.get().descriptionIndent).formatted(Formatting.GRAY)
+                            .append(new LiteralText(wrappedLines[i]).formatted(Formatting.DARK_GRAY)));
                 }
             }
 

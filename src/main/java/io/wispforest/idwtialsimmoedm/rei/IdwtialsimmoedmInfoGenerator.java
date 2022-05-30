@@ -10,6 +10,7 @@ import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class IdwtialsimmoedmInfoGenerator implements DynamicDisplayGenerator<Def
 
         for (var enchantment : enchantments) {
             final var display = DefaultInformationDisplay.createFromEntry(entry, Text.of("epic, it describes it"));
-            display.line(Text.translatable(enchantment.getTranslationKey() + ".desc"));
+            display.line(new TranslatableText(enchantment.getTranslationKey() + ".desc"));
 
             displayList.add(display);
         }
