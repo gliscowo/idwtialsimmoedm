@@ -27,7 +27,6 @@ dependencies {
 
     modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
     modImplementation "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_version}"
-    modImplementation "dev.architectury:architectury-fabric:5.4.14"
 
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 }

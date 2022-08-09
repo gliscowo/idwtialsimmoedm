@@ -8,6 +8,8 @@ import net.fabricmc.loader.api.FabricLoader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -30,7 +32,7 @@ public class IdwtialsimmoedmConfig {
         }
 
         try (var input = Files.newInputStream(configPath())) {
-            INSTANCE = GSON.fromJson(new InputStreamReader(input), IdwtialsimmoedmConfig.class);
+            INSTANCE = GSON.fromJson(new InputStreamReader(input, StandardCharsets.UTF_8), IdwtialsimmoedmConfig.class);
         } catch (IOException e) {
             IdwtialsimmoedmClient.LOGGER.warn("Could not load config", e);
         }
@@ -39,7 +41,7 @@ public class IdwtialsimmoedmConfig {
     public static void save() {
         IdwtialsimmoedmClient.clearCache();
 
-        try (var output = Files.newOutputStream(configPath()); var writer = new OutputStreamWriter(output)) {
+        try (var output = Files.newOutputStream(configPath()); var writer = new OutputStreamWriter(output, StandardCharsets.UTF_8)) {
             GSON.toJson(INSTANCE, writer);
         } catch (IOException e) {
             IdwtialsimmoedmClient.LOGGER.warn("Could not save config", e);
