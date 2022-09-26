@@ -32,7 +32,7 @@
   "enchantment.minecraft.depth_strider.desc": "Увеличение скорости перемещения в воде.",
   "enchantment.minecraft.frost_walker.desc": "Временное охлаждение воды и магмы под игроком.",
   "enchantment.minecraft.mending.desc": "Восстановление прочности предмета за счёт поглощения опыта.",
-  "enchantment.minecraft.binding_curse.desc": "Данное зачарование на предмете не позволит вам выбросить или снять его со слота брони, выпадает из игрока только в случае его смерти.",
+  "enchantment.minecraft.binding_curse.desc": "Блокировка возможности снять экипированный предмет с этим проклятьем.",
   "enchantment.minecraft.vanishing_curse.desc": "Предмет с данным зачарованием самоуничтожится при смерти игрока.",
   "enchantment.minecraft.sweeping.desc": "Увеличивает урон по мобам, стоящих рядом с целью.",
   "enchantment.minecraft.loyalty.desc": "Позволяет трезубцу автоматически возвращаться после броска.",
