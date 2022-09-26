@@ -26,7 +26,7 @@
   "enchantment.minecraft.power.desc": "Увеличение урона от стрел при попадании из лука.",
   "enchantment.minecraft.punch.desc": "Усиление откидывания противника при попадании из лука.",
   "enchantment.minecraft.flame.desc": "Поджог стрелы и противника при попадании в него.",
-  "enchantment.minecraft.infinity.desc": "Позволяет луку стрелять бесконечно, не тратя стрелы. Но для стрельбы необходима хотя бы одна стрела.",
+  "enchantment.minecraft.infinity.desc": "Бесконечная стрельба из лука обычными стрелами при наличии в инвентаре хотя бы одной.",
   "enchantment.minecraft.luck_of_the_sea.desc": "Увеличивает шанс получения хорошей добычи во время рыбалки.",
   "enchantment.minecraft.lure.desc": "Снижает количество времени, которое требуется рыбе, чтобы заглотить крючок.",
   "enchantment.minecraft.depth_strider.desc": "Увеличивает скорость передвижения под водой.",
