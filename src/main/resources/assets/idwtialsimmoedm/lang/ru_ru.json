@@ -6,7 +6,7 @@
   "text.idwtialsimmoedm.config.field.displayOnBooksOnly": "Отображать только в чародейских книгах",
 
   "enchantment.minecraft.protection.desc": "Общее снижение урона от большинства источников.",
-  "enchantment.minecraft.fire_protection.desc": "Снижает урон от огня и время горения игрока.",
+  "enchantment.minecraft.fire_protection.desc": "Снижение урона от огня и времени горения игрока.",
   "enchantment.minecraft.feather_falling.desc": "Снижает урон от падения и телепортации с помощью эндер-жемчуга.",
   "enchantment.minecraft.blast_protection.desc": "Снижает урон от взрывов и эффект откидывания при взрыве.",
   "enchantment.minecraft.projectile_protection.desc": "Снижает урон от таких снарядов, как стрелы и огненные шары.",
