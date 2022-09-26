@@ -36,7 +36,7 @@
   "enchantment.minecraft.vanishing_curse.desc": "Исчезновение предмета после смерти игрока.",
   "enchantment.minecraft.sweeping.desc": "Увеличение урона по противникам, попавшим под взмах меча.",
   "enchantment.minecraft.loyalty.desc": "Возвращение трезубца к хозяину после попадания.",
-  "enchantment.minecraft.impaling.desc": "Увеличивает трезубцу урон по мобам, которые естественным образом появляются в океане.",
+  "enchantment.minecraft.impaling.desc": "Увеличение урона при атаке трезубцем водных существ.",
   "enchantment.minecraft.riptide.desc": "Позволяет трезубцу запускать игрока вперед. Работает только во время дождя или когда вы находитесь в воде.",
   "enchantment.minecraft.channeling.desc": "Позволяет трезубцу вызывать молнии во время шторма.",
   "enchantment.minecraft.multishot.desc": "При выстреле из арбалета одновременно вылетают 3 стрелы в четко определенных направлениях.",
