@@ -20,7 +20,7 @@
   "enchantment.minecraft.fire_aspect.desc": "Поджог противника.",
   "enchantment.minecraft.looting.desc": "Повышение вероятности выпадения редкой добычи и её количества.",
   "enchantment.minecraft.efficiency.desc": "Повышение скорости ломания.",
-  "enchantment.minecraft.silk_touch.desc": "Позволяет добывать хрупкие блоки, такие как стекло и не только.",
+  "enchantment.minecraft.silk_touch.desc": "Выпадение стекла, руд и других блоков в неизменном виде при разрушении.",
   "enchantment.minecraft.unbreaking.desc": "Позволяет инструменту терять прочность с меньшей скоростью.",
   "enchantment.minecraft.fortune.desc": "Увеличивает шанс выпадения большего количества ресурсов с блоков руд.",
   "enchantment.minecraft.power.desc": "Увеличивает урон стрел, выпускаемых из лука.",
