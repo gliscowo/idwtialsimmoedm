@@ -31,7 +31,7 @@
   "enchantment.minecraft.lure.desc": "Снижение длительности попадания рыбы на крючок.",
   "enchantment.minecraft.depth_strider.desc": "Увеличение скорости перемещения в воде.",
   "enchantment.minecraft.frost_walker.desc": "Временное охлаждение воды и магмы под игроком.",
-  "enchantment.minecraft.mending.desc": "Использует опыт для починки какого-либо предмета в руках или в слотах брони.",
+  "enchantment.minecraft.mending.desc": "Восстановление прочности предмета за счёт поглощения опыта.",
   "enchantment.minecraft.binding_curse.desc": "Данное зачарование на предмете не позволит вам выбросить или снять его со слота брони, выпадает из игрока только в случае его смерти.",
   "enchantment.minecraft.vanishing_curse.desc": "Предмет с данным зачарованием самоуничтожится при смерти игрока.",
   "enchantment.minecraft.sweeping.desc": "Увеличивает урон по мобам, стоящих рядом с целью.",
