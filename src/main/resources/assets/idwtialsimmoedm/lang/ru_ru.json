@@ -1,6 +1,6 @@
 {
   "text.idwtialsimmoedm.config.title": "Настройки idwtialsimmoedm",
-  "text.idwtialsimmoedm.config.field.descriptionPrefix": "Префикс перед описанием (1 линия)",
+  "text.idwtialsimmoedm.config.field.descriptionPrefix": "Префикс первой строки описания",
   "text.idwtialsimmoedm.config.field.descriptionIndent": "Отступы слева от описания (2+ линия)",
   "text.idwtialsimmoedm.config.field.displayOnlyWhenShiftIsHeld": "Отображать описание только при удерживании Shift",
   "text.idwtialsimmoedm.config.field.displayOnBooksOnly": "Отображать описание только в чародейских книгах",
