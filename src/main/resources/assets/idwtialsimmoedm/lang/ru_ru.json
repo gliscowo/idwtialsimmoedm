@@ -5,7 +5,7 @@
   "text.idwtialsimmoedm.config.field.displayOnlyWhenShiftIsHeld": "Отображать описание по нажатию Shift",
   "text.idwtialsimmoedm.config.field.displayOnBooksOnly": "Отображать только в чародейских книгах",
 
-  "enchantment.minecraft.protection.desc": "Снижает урон от большинства источников.",
+  "enchantment.minecraft.protection.desc": "Общее снижение урона от большинства источников.",
   "enchantment.minecraft.fire_protection.desc": "Снижает урон от огня и время горения игрока.",
   "enchantment.minecraft.feather_falling.desc": "Снижает урон от падения и телепортации с помощью эндер-жемчуга.",
   "enchantment.minecraft.blast_protection.desc": "Снижает урон от взрывов и эффект откидывания при взрыве.",
