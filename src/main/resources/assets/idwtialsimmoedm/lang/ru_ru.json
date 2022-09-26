@@ -35,7 +35,7 @@
   "enchantment.minecraft.binding_curse.desc": "Блокировка возможности снять экипированный предмет с этим проклятьем.",
   "enchantment.minecraft.vanishing_curse.desc": "Исчезновение предмета после смерти игрока.",
   "enchantment.minecraft.sweeping.desc": "Увеличение урона по противникам, попавшим под взмах меча.",
-  "enchantment.minecraft.loyalty.desc": "Позволяет трезубцу автоматически возвращаться после броска.",
+  "enchantment.minecraft.loyalty.desc": "Возвращение трезубца к хозяину после попадания.",
   "enchantment.minecraft.impaling.desc": "Увеличивает трезубцу урон по мобам, которые естественным образом появляются в океане.",
   "enchantment.minecraft.riptide.desc": "Позволяет трезубцу запускать игрока вперед. Работает только во время дождя или когда вы находитесь в воде.",
   "enchantment.minecraft.channeling.desc": "Позволяет трезубцу вызывать молнии во время шторма.",
