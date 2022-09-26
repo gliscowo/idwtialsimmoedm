@@ -43,8 +43,7 @@
   "enchantment.minecraft.quick_charge.desc": "Увеличение скорости перезарядки арбалета.",
   "enchantment.minecraft.piercing.desc": "Пронзание стрелой из арбалета сразу нескольких противников.",
   "enchantment.minecraft.soul_speed.desc": "Увеличение скорости передвижения по песку и почве душ.",
-  "enchantment.minecraft.swift_sneak.desc": "Увеличение скорости передвижения крадучись."
-,  "modmenu.summaryTranslation.idwtialsimmoedm": "Я не хотел устанавливать библиотеку, поэтому сделал свой мод для описаний чар.",
+  "enchantment.minecraft.swift_sneak.desc": "Увеличение скорости передвижения крадучись.",
+  "modmenu.summaryTranslation.idwtialsimmoedm": "Я не хотел устанавливать библиотеку, поэтому сделал свой мод для описаний чар.",
   "modmenu.descriptionTranslation.idwtialsimmoedm": "Лекговесный и независимый мод на описания в любых подсказках, содержащих чары. Используется тот же формат, что и у Enchantment Descriptions, поэтому моды с описаниями своих чар также будут поддерживаться."
 }
-
