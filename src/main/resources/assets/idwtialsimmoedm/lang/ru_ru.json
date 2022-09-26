@@ -3,7 +3,7 @@
   "text.idwtialsimmoedm.config.field.descriptionPrefix": "Префикс первой строки описания",
   "text.idwtialsimmoedm.config.field.descriptionIndent": "Отступы последующих строк",
   "text.idwtialsimmoedm.config.field.displayOnlyWhenShiftIsHeld": "Отображать описание по нажатию Shift",
-  "text.idwtialsimmoedm.config.field.displayOnBooksOnly": "Отображать описание только в чародейских книгах",
+  "text.idwtialsimmoedm.config.field.displayOnBooksOnly": "Отображать только в чародейских книгах",
 
   "enchantment.minecraft.protection.desc": "Снижает урон от большинства источников.",
   "enchantment.minecraft.fire_protection.desc": "Снижает урон от огня и время горения игрока.",
