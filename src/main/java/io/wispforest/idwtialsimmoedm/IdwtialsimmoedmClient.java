@@ -6,26 +6,20 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableTextContent;
+import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Language;
-import org.apache.commons.lang3.text.WordUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Environment(EnvType.CLIENT)
 public class IdwtialsimmoedmClient implements ClientModInitializer {
@@ -78,21 +72,35 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
 
     public static List<MutableText> getDescription(Enchantment enchantment) {
         return CACHE.computeIfAbsent(enchantment, s -> {
-            final var wrappedLines = WordUtils.wrap(Language.getInstance().get(enchantment.getTranslationKey() + ".desc"), 35).split(System.lineSeparator());
-            final var output = new ArrayList<MutableText>();
+            var lines = MinecraftClient.getInstance().textRenderer.getTextHandler()
+                    .wrapLines(Text.translatable(enchantment.getTranslationKey() + ".desc"), 150, Style.EMPTY.withColor(Formatting.DARK_GRAY))
+                    .stream()
+                    .map(VisitableTextContent::new)
+                    .map(MutableText::of).toList();
 
-            output.add(Text.literal(IdwtialsimmoedmConfig.get().descriptionPrefix).formatted(Formatting.GRAY)
-                    .append(Text.literal(wrappedLines[0]).formatted(Formatting.DARK_GRAY)));
-
-            if (wrappedLines.length > 1) {
-                for (int i = 1; i < wrappedLines.length; i++) {
-                    output.add(0, Text.literal(IdwtialsimmoedmConfig.get().descriptionIndent).formatted(Formatting.GRAY)
-                            .append(Text.literal(wrappedLines[i]).formatted(Formatting.DARK_GRAY)));
+            var output = new ArrayList<MutableText>();
+            for (int i = 0; i < lines.size(); i++) {
+                if (i == 0) {
+                    output.add(0, Text.literal(IdwtialsimmoedmConfig.get().descriptionPrefix).formatted(Formatting.GRAY).append(lines.get(i)));
+                } else {
+                    output.add(0, Text.literal(IdwtialsimmoedmConfig.get().descriptionIndent).formatted(Formatting.GRAY).append(lines.get(i)));
                 }
             }
 
             return output;
         });
+    }
+
+    public record VisitableTextContent(StringVisitable content) implements TextContent {
+        @Override
+        public <T> Optional<T> visit(StringVisitable.StyledVisitor<T> visitor, Style style) {
+            return content.visit(visitor, style);
+        }
+
+        @Override
+        public <T> Optional<T> visit(StringVisitable.Visitor<T> visitor) {
+            return content.visit(visitor);
+        }
     }
 
     public static void clearCache() {
