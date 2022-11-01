@@ -23,6 +23,7 @@ public class IdwtialsimmoedmConfig {
 
     public boolean displayOnlyWhenShiftIsHeld = false;
     public boolean displayOnBooksOnly = true;
+    public boolean hideMissingDescriptions = !FabricLoader.getInstance().isDevelopmentEnvironment();
 
     public static void load() {
         if (!Files.exists(configPath())) {

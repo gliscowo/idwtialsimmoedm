@@ -4,6 +4,7 @@
   "text.idwtialsimmoedm.config.field.descriptionIndent": "description indentation (lines 2+)",
   "text.idwtialsimmoedm.config.field.displayOnlyWhenShiftIsHeld": "display only when shift is held",
   "text.idwtialsimmoedm.config.field.displayOnBooksOnly": "display only on enchanted books",
+  "text.idwtialsimmoedm.config.field.hideMissingDescriptions": "hide missing descriptions",
 
   "enchantment.minecraft.protection.desc": "Moderate damage resistance to most sources",
   "enchantment.minecraft.fire_protection.desc": "High resistance to fire damage and reduced burn time if you're set ablaze",
@@ -43,5 +44,7 @@
   "enchantment.minecraft.quick_charge.desc": "Decreased charge time for the Crossbow",
   "enchantment.minecraft.piercing.desc": "Arrows fired from the Crossbow will pierce through multiple enemies at once",
   "enchantment.minecraft.soul_speed.desc": "Greater walking speed on Soul Sand and Soul Soil",
-  "enchantment.miencraft.swift_sneak": "Enhanced movement speed while sneaking"
+  "enchantment.miencraft.swift_sneak": "Enhanced movement speed while sneaking",
+
+  "effect.minecraft.night_vision.desc": "you can see at night now"
 }

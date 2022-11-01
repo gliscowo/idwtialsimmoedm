@@ -31,6 +31,10 @@
     ]
   },
 
+  "mixins": [
+    "idwtialsimmoedm.mixins.json"
+  ],
+
   "depends": {
     "fabricloader": "*",
     "fabric": "*",
