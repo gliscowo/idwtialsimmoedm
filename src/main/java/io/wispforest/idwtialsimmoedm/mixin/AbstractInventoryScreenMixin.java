@@ -1,5 +1,6 @@
 package io.wispforest.idwtialsimmoedm.mixin;
 
+import com.google.common.collect.Lists;
 import io.wispforest.idwtialsimmoedm.IdwtialsimmoedmClient;
 import net.minecraft.client.gui.screen.ingame.AbstractInventoryScreen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -30,7 +31,8 @@ public abstract class AbstractInventoryScreenMixin extends HandledScreen<ScreenH
         super(handler, inventory, title);
     }
 
-    @Shadow protected abstract Text getStatusEffectDescription(StatusEffectInstance statusEffect);
+    @Shadow
+    protected abstract Text getStatusEffectDescription(StatusEffectInstance statusEffect);
 
     @SuppressWarnings("InvalidInjectorMethodSignature")
     @ModifyVariable(method = "drawStatusEffects", at = @At(value = "INVOKE_ASSIGN", target = "Ljava/util/List;of(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;"))
@@ -43,9 +45,8 @@ public abstract class AbstractInventoryScreenMixin extends HandledScreen<ScreenH
         list.clear();
         list.add(((MutableText) this.getStatusEffectDescription(statusEffectInstance))
                 .append(Text.literal(" " + StatusEffectUtil.durationToString(statusEffectInstance, 1.0F))
-                    .formatted(Formatting.GRAY)));
-
-        list.addAll(IdwtialsimmoedmClient.getEffectDescription(statusEffectInstance.getEffectType()));
+                        .formatted(Formatting.GRAY)));
+        list.addAll(Lists.reverse(IdwtialsimmoedmClient.getEffectDescription(statusEffectInstance.getEffectType())));
     }
 
     @Inject(method = "drawStatusEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/ingame/AbstractInventoryScreen;drawStatusEffectDescriptions(Lnet/minecraft/client/util/math/MatrixStack;IILjava/lang/Iterable;)V"), locals = LocalCapture.CAPTURE_FAILHARD)
@@ -54,7 +55,7 @@ public abstract class AbstractInventoryScreenMixin extends HandledScreen<ScreenH
             int l = this.y;
             StatusEffectInstance statusEffectInstance = null;
 
-            for(StatusEffectInstance statusEffectInstance2 : iterable) {
+            for (StatusEffectInstance statusEffectInstance2 : iterable) {
                 if (mouseY >= l && mouseY <= l + k) {
                     statusEffectInstance = statusEffectInstance2;
                 }
@@ -66,9 +67,9 @@ public abstract class AbstractInventoryScreenMixin extends HandledScreen<ScreenH
                 List<Text> list = new ArrayList<>();
 
                 list.add(((MutableText) this.getStatusEffectDescription(statusEffectInstance))
-                    .append(Text.literal(" " + StatusEffectUtil.durationToString(statusEffectInstance, 1.0F))
-                        .formatted(Formatting.GRAY)));
-                list.addAll(IdwtialsimmoedmClient.getEffectDescription(statusEffectInstance.getEffectType()));
+                        .append(Text.literal(" " + StatusEffectUtil.durationToString(statusEffectInstance, 1.0F))
+                                .formatted(Formatting.GRAY)));
+                list.addAll(Lists.reverse(IdwtialsimmoedmClient.getEffectDescription(statusEffectInstance.getEffectType())));
 
                 this.renderTooltip(matrices, list, Optional.empty(), mouseX, mouseY);
             }

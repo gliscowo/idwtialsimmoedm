@@ -41,7 +41,7 @@ public class IdwtialsimmoedmModMenuHook implements ModMenuApi {
         };
     }
 
-    private static Text fieldName(Field field)  {
+    private static Text fieldName(Field field) {
         return Text.translatable("text.idwtialsimmoedm.config.field." + field.getName());
     }
 

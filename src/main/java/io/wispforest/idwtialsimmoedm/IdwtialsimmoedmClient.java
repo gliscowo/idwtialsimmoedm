@@ -81,12 +81,12 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
                 Text line = lines.get(i);
 
                 if (line.getContent() instanceof TranslatableTextContent translatable
-                    && translatable.getKey().equals("potion.withDuration")) {
+                        && translatable.getKey().equals("potion.withDuration")) {
                     line = (Text) translatable.getArgs()[0];
                 }
 
                 if (line.getContent() instanceof TranslatableTextContent translatable
-                    && translatable.getKey().equals("potion.withAmplifier")) {
+                        && translatable.getKey().equals("potion.withAmplifier")) {
                     line = (Text) translatable.getArgs()[0];
                 }
 
@@ -117,24 +117,24 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
 
     public static List<MutableText> getEnchantmentDescription(Enchantment enchantment) {
         return ENCHANTMENT_CACHE.computeIfAbsent(enchantment,
-            s -> splitTranslation(s.getTranslationKey() + ".desc"));
+                s -> splitTranslation(s.getTranslationKey() + ".desc"));
     }
 
     public static List<MutableText> getEffectDescription(StatusEffect effect) {
         return EFFECT_CACHE.computeIfAbsent(effect,
-            s -> splitTranslation(s.getTranslationKey() + ".desc"));
+                s -> splitTranslation(s.getTranslationKey() + ".desc"));
     }
 
     public static List<MutableText> splitTranslation(String translationKey) {
         if (IdwtialsimmoedmConfig.get().hideMissingDescriptions
-            && !Language.getInstance().hasTranslation(translationKey))
+                && !Language.getInstance().hasTranslation(translationKey))
             return List.of();
 
         var lines = MinecraftClient.getInstance().textRenderer.getTextHandler()
-            .wrapLines(Text.translatable(translationKey), 150, Style.EMPTY.withColor(Formatting.DARK_GRAY))
-            .stream()
-            .map(VisitableTextContent::new)
-            .map(MutableText::of).toList();
+                .wrapLines(Text.translatable(translationKey), 150, Style.EMPTY.withColor(Formatting.DARK_GRAY))
+                .stream()
+                .map(VisitableTextContent::new)
+                .map(MutableText::of).toList();
 
         var output = new ArrayList<MutableText>();
         for (int i = 0; i < lines.size(); i++) {
