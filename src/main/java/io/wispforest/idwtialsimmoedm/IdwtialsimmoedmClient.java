@@ -12,13 +12,13 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.EnchantedBookItem;
+import net.minecraft.registry.Registries;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Language;
-import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -103,7 +103,7 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
 
                 String namespace = key.substring(firstDot + 1, secondDot);
                 String path = key.substring(secondDot + 1);
-                StatusEffect effect = Registry.STATUS_EFFECT.get(new Identifier(namespace, path));
+                StatusEffect effect = Registries.STATUS_EFFECT.get(new Identifier(namespace, path));
 
                 if (effect == null) continue;
 
