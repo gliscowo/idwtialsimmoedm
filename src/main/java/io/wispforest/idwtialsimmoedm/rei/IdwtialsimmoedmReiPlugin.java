@@ -9,4 +9,5 @@ public class IdwtialsimmoedmReiPlugin implements REIClientPlugin {
     public void registerDisplays(DisplayRegistry registry) {
         registry.registerGlobalDisplayGenerator(new IdwtialsimmoedmInfoGenerator());
     }
+
 }

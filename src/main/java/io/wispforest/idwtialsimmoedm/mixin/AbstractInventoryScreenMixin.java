@@ -41,38 +41,37 @@ public abstract class AbstractInventoryScreenMixin extends HandledScreen<ScreenH
     }
 
     @Inject(method = "drawStatusEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/ingame/AbstractInventoryScreen;renderTooltip(Lnet/minecraft/client/util/math/MatrixStack;Ljava/util/List;Ljava/util/Optional;II)V"), locals = LocalCapture.CAPTURE_FAILHARD)
-    private void addDescription(MatrixStack matrices, int mouseX, int mouseY, CallbackInfo ci, int i, int j, Collection<?> collection, boolean bl, int k, Iterable<StatusEffectInstance> iterable, int l, StatusEffectInstance statusEffectInstance, List<Text> list) {
-        list.clear();
-        list.add(((MutableText) this.getStatusEffectDescription(statusEffectInstance))
-                .append(Text.literal(" " + StatusEffectUtil.durationToString(statusEffectInstance, 1.0F))
+    private void addDescription(MatrixStack matrices, int mouseX, int mouseY, CallbackInfo ci, int i, int j, Collection<?> collection, boolean bl, int k, Iterable<StatusEffectInstance> iterable, int l, StatusEffectInstance statusEffectInstance, List<Text> tooltip) {
+        tooltip.clear();
+        tooltip.add(((MutableText) this.getStatusEffectDescription(statusEffectInstance))
+                .append(Text.literal(" ").append(StatusEffectUtil.durationToString(statusEffectInstance, 1.0F))
                         .formatted(Formatting.GRAY)));
-        list.addAll(Lists.reverse(IdwtialsimmoedmClient.getEffectDescription(statusEffectInstance.getEffectType())));
+        tooltip.addAll(Lists.reverse(IdwtialsimmoedmClient.getEffectDescription(statusEffectInstance.getEffectType())));
     }
 
     @Inject(method = "drawStatusEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/ingame/AbstractInventoryScreen;drawStatusEffectDescriptions(Lnet/minecraft/client/util/math/MatrixStack;IILjava/lang/Iterable;)V"), locals = LocalCapture.CAPTURE_FAILHARD)
-    private void Mald(MatrixStack matrices, int mouseX, int mouseY, CallbackInfo ci, int i, int j, Collection<StatusEffectInstance> collection, boolean bl, int k, Iterable<StatusEffectInstance> iterable) {
+    private void mald(MatrixStack matrices, int mouseX, int mouseY, CallbackInfo ci, int i, int j, Collection<StatusEffectInstance> collection, boolean bl, int effectHeight, Iterable<StatusEffectInstance> displayedEffects) {
         if (mouseX >= i && mouseX <= i + 121) {
-            int l = this.y;
-            StatusEffectInstance statusEffectInstance = null;
+            int yLowerBound = this.y;
+            StatusEffectInstance hoveredEffect = null;
 
-            for (StatusEffectInstance statusEffectInstance2 : iterable) {
-                if (mouseY >= l && mouseY <= l + k) {
-                    statusEffectInstance = statusEffectInstance2;
+            for (var effect : displayedEffects) {
+                if (mouseY >= yLowerBound && mouseY <= yLowerBound + effectHeight) {
+                    hoveredEffect = effect;
                 }
 
-                l += k;
+                yLowerBound += effectHeight;
             }
 
-            if (statusEffectInstance != null) {
-                List<Text> list = new ArrayList<>();
+            if (hoveredEffect == null) return;
+            var tooltip = new ArrayList<Text>();
 
-                list.add(((MutableText) this.getStatusEffectDescription(statusEffectInstance))
-                        .append(Text.literal(" " + StatusEffectUtil.durationToString(statusEffectInstance, 1.0F))
-                                .formatted(Formatting.GRAY)));
-                list.addAll(Lists.reverse(IdwtialsimmoedmClient.getEffectDescription(statusEffectInstance.getEffectType())));
+            tooltip.add(((MutableText) this.getStatusEffectDescription(hoveredEffect))
+                    .append(Text.literal(" ").append(StatusEffectUtil.durationToString(hoveredEffect, 1.0F))
+                            .formatted(Formatting.GRAY)));
+            tooltip.addAll(Lists.reverse(IdwtialsimmoedmClient.getEffectDescription(hoveredEffect.getEffectType())));
 
-                this.renderTooltip(matrices, list, Optional.empty(), mouseX, mouseY);
-            }
+            this.renderTooltip(matrices, tooltip, Optional.empty(), mouseX, mouseY);
         }
     }
 }

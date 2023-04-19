@@ -16,6 +16,16 @@ import java.util.Optional;
 
 public class IdwtialsimmoedmInfoGenerator implements DynamicDisplayGenerator<DefaultInformationDisplay> {
 
+    @Override
+    public Optional<List<DefaultInformationDisplay>> getRecipeFor(EntryStack<?> entry) {
+        return this.generate(entry);
+    }
+
+    @Override
+    public Optional<List<DefaultInformationDisplay>> getUsageFor(EntryStack<?> entry) {
+        return this.generate(entry);
+    }
+
     private Optional<List<DefaultInformationDisplay>> generate(EntryStack<?> entry) {
         if (entry.getType() != VanillaEntryTypes.ITEM) return Optional.empty();
 
@@ -33,15 +43,5 @@ public class IdwtialsimmoedmInfoGenerator implements DynamicDisplayGenerator<Def
         }
 
         return Optional.of(displayList);
-    }
-
-    @Override
-    public Optional<List<DefaultInformationDisplay>> getRecipeFor(EntryStack<?> entry) {
-        return generate(entry);
-    }
-
-    @Override
-    public Optional<List<DefaultInformationDisplay>> getUsageFor(EntryStack<?> entry) {
-        return generate(entry);
     }
 }
