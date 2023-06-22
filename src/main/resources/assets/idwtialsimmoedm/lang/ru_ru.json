@@ -2,7 +2,7 @@
   "text.idwtialsimmoedm.config.title": "настройка янхсбипясcмноз",
   "text.idwtialsimmoedm.config.field.descriptionPrefix": "префикс описаний (строка 1)",
   "text.idwtialsimmoedm.config.field.descriptionIndent": "отступ описаний (строка 2+)",
-  "text.idwtialsimmoedm.config.field.displayOnlyWhenShiftIsHeld": "показывать, только когда зажат shift",
+  "text.idwtialsimmoedm.config.field.displayOnlyWhenShiftIsHeld": "показывать, только когда зажат Shift",
   "text.idwtialsimmoedm.config.field.displayOnBooksOnly": "показывать только на чародейских книгах",
   "text.idwtialsimmoedm.config.field.hideMissingDescriptions": "спрятать отсуствующие описания",
 
