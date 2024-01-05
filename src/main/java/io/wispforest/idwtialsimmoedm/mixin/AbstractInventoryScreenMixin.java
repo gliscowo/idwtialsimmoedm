@@ -44,7 +44,7 @@ public abstract class AbstractInventoryScreenMixin extends HandledScreen<ScreenH
     private void addDescription(DrawContext context, int mouseX, int mouseY, CallbackInfo ci, int i, int j, Collection<?> collection, boolean bl, int k, Iterable<StatusEffectInstance> iterable, int l, StatusEffectInstance statusEffectInstance, List<Text> tooltip) {
         tooltip.clear();
         tooltip.add(((MutableText) this.getStatusEffectDescription(statusEffectInstance))
-                .append(Text.literal(" ").append(StatusEffectUtil.getDurationText(statusEffectInstance, 1.0F))
+                .append(Text.literal(" ").append(StatusEffectUtil.getDurationText(statusEffectInstance, 1.0F, this.client.world.getTickManager().getTickRate()))
                         .formatted(Formatting.GRAY)));
         tooltip.addAll(Lists.reverse(IdwtialsimmoedmClient.getEffectDescription(statusEffectInstance.getEffectType())));
     }
@@ -67,7 +67,7 @@ public abstract class AbstractInventoryScreenMixin extends HandledScreen<ScreenH
             var tooltip = new ArrayList<Text>();
 
             tooltip.add(((MutableText) this.getStatusEffectDescription(hoveredEffect))
-                    .append(Text.literal(" ").append(StatusEffectUtil.getDurationText(hoveredEffect, 1.0F))
+                    .append(Text.literal(" ").append(StatusEffectUtil.getDurationText(hoveredEffect, 1.0F, this.client.world.getTickManager().getTickRate()))
                             .formatted(Formatting.GRAY)));
             tooltip.addAll(Lists.reverse(IdwtialsimmoedmClient.getEffectDescription(hoveredEffect.getEffectType())));
 
