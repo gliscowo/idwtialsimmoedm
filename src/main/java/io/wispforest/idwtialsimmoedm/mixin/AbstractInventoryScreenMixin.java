@@ -1,7 +1,7 @@
 package io.wispforest.idwtialsimmoedm.mixin;
 
 import com.google.common.collect.Lists;
-import io.wispforest.idwtialsimmoedm.IdwtialsimmoedmClient;
+import io.wispforest.idwtialsimmoedm.api.GatherDescriptionCallback;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.AbstractInventoryScreen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -42,11 +42,14 @@ public abstract class AbstractInventoryScreenMixin extends HandledScreen<ScreenH
 
     @Inject(method = "drawStatusEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawTooltip(Lnet/minecraft/client/font/TextRenderer;Ljava/util/List;Ljava/util/Optional;II)V"), locals = LocalCapture.CAPTURE_FAILHARD)
     private void addDescription(DrawContext context, int mouseX, int mouseY, CallbackInfo ci, int i, int j, Collection<?> collection, boolean bl, int k, Iterable<StatusEffectInstance> iterable, int l, StatusEffectInstance statusEffectInstance, List<Text> tooltip) {
+        var description = GatherDescriptionCallback.STATUS_EFFECT.invoker().gatherDescription(statusEffectInstance.getEffectType());
+        if (description == null) return;
+
         tooltip.clear();
         tooltip.add(((MutableText) this.getStatusEffectDescription(statusEffectInstance))
                 .append(Text.literal(" ").append(StatusEffectUtil.getDurationText(statusEffectInstance, 1.0F, this.client.world.getTickManager().getTickRate()))
                         .formatted(Formatting.GRAY)));
-        tooltip.addAll(Lists.reverse(IdwtialsimmoedmClient.getEffectDescription(statusEffectInstance.getEffectType())));
+        tooltip.addAll(Lists.reverse(description));
     }
 
     @Inject(method = "drawStatusEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/ingame/AbstractInventoryScreen;drawStatusEffectDescriptions(Lnet/minecraft/client/gui/DrawContext;IILjava/lang/Iterable;)V"), locals = LocalCapture.CAPTURE_FAILHARD)
@@ -64,12 +67,15 @@ public abstract class AbstractInventoryScreenMixin extends HandledScreen<ScreenH
             }
 
             if (hoveredEffect == null) return;
-            var tooltip = new ArrayList<Text>();
 
+            var description = GatherDescriptionCallback.STATUS_EFFECT.invoker().gatherDescription(hoveredEffect.getEffectType());
+            if (description == null) return;
+
+            var tooltip = new ArrayList<Text>();
             tooltip.add(((MutableText) this.getStatusEffectDescription(hoveredEffect))
                     .append(Text.literal(" ").append(StatusEffectUtil.getDurationText(hoveredEffect, 1.0F, this.client.world.getTickManager().getTickRate()))
                             .formatted(Formatting.GRAY)));
-            tooltip.addAll(Lists.reverse(IdwtialsimmoedmClient.getEffectDescription(hoveredEffect.getEffectType())));
+            tooltip.addAll(Lists.reverse(description));
 
             context.drawTooltip(this.client.textRenderer, tooltip, Optional.empty(), mouseX, mouseY);
         }

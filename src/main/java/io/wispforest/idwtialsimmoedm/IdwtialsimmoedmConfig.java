@@ -3,6 +3,7 @@ package io.wispforest.idwtialsimmoedm;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import io.wispforest.idwtialsimmoedm.api.DefaultDescriptions;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class IdwtialsimmoedmConfig {
     }
 
     public static void save() {
-        IdwtialsimmoedmClient.clearCache();
+        DefaultDescriptions.clearCache();
 
         try (var output = Files.newOutputStream(configPath()); var writer = new OutputStreamWriter(output, StandardCharsets.UTF_8)) {
             GSON.toJson(INSTANCE, writer);
