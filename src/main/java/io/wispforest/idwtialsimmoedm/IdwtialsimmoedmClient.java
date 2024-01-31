@@ -1,14 +1,15 @@
 package io.wispforest.idwtialsimmoedm;
 
+import io.wispforest.idwtialsimmoedm.api.DefaultDescriptions;
+import io.wispforest.idwtialsimmoedm.api.GatherDescriptionCallback;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
+import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.EnchantedBookItem;
@@ -16,21 +17,17 @@ import net.minecraft.registry.Registries;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.text.*;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Language;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.*;
+import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class IdwtialsimmoedmClient implements ClientModInitializer {
 
     public static final Logger LOGGER = LogManager.getLogger("idwtialsimmoedm");
-
-    private static final Map<Enchantment, List<MutableText>> ENCHANTMENT_CACHE = new HashMap<>();
-    private static final Map<StatusEffect, List<MutableText>> EFFECT_CACHE = new HashMap<>();
+    private static final Identifier LATE_PHASE = new Identifier("idwtialsimmoedm", "descriptions");
 
     @Override
     public void onInitializeClient() {
@@ -44,7 +41,7 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
 
             @Override
             public void reload(ResourceManager manager) {
-                IdwtialsimmoedmClient.clearCache();
+                DefaultDescriptions.clearCache();
             }
         });
 
@@ -65,7 +62,10 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
                     if (!(lines.get(i).getContent() instanceof TranslatableTextContent text)) continue;
                     if (!text.getKey().equals(enchantment.getTranslationKey())) continue;
 
-                    for (var descLine : getEnchantmentDescription(enchantment)) {
+                    var description = GatherDescriptionCallback.ENCHANTMENT.invoker().gatherDescription(enchantment);
+                    if (description == null) return;
+
+                    for (var descLine : description) {
                         lines.add(i + 1, descLine);
                     }
                 }
@@ -107,45 +107,20 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
 
                 if (effect == null) continue;
 
-                for (var descLine : getEffectDescription(effect)) {
+                var description = GatherDescriptionCallback.STATUS_EFFECT.invoker().gatherDescription(effect);
+                if (description == null) return;
+
+                for (var descLine : description) {
                     lines.add(i + 1, descLine);
                 }
             }
-
         });
-    }
 
-    public static List<MutableText> getEnchantmentDescription(Enchantment enchantment) {
-        return ENCHANTMENT_CACHE.computeIfAbsent(enchantment,
-                s -> splitTranslation(s.getTranslationKey() + ".desc"));
-    }
+        GatherDescriptionCallback.ENCHANTMENT.addPhaseOrdering(Event.DEFAULT_PHASE, LATE_PHASE);
+        GatherDescriptionCallback.ENCHANTMENT.register(LATE_PHASE, DefaultDescriptions::forEnchantment);
 
-    public static List<MutableText> getEffectDescription(StatusEffect effect) {
-        return EFFECT_CACHE.computeIfAbsent(effect,
-                s -> splitTranslation(s.getTranslationKey() + ".desc"));
-    }
-
-    public static List<MutableText> splitTranslation(String translationKey) {
-        if (IdwtialsimmoedmConfig.get().hideMissingDescriptions
-                && !Language.getInstance().hasTranslation(translationKey))
-            return List.of();
-
-        var lines = MinecraftClient.getInstance().textRenderer.getTextHandler()
-                .wrapLines(Text.translatable(translationKey), 150, Style.EMPTY.withColor(Formatting.DARK_GRAY))
-                .stream()
-                .map(VisitableTextContent::new)
-                .map(MutableText::of).toList();
-
-        var output = new ArrayList<MutableText>();
-        for (int i = 0; i < lines.size(); i++) {
-            if (i == 0) {
-                output.add(0, Text.literal(IdwtialsimmoedmConfig.get().descriptionPrefix).formatted(Formatting.GRAY).append(lines.get(i)));
-            } else {
-                output.add(0, Text.literal(IdwtialsimmoedmConfig.get().descriptionIndent).formatted(Formatting.GRAY).append(lines.get(i)));
-            }
-        }
-
-        return output;
+        GatherDescriptionCallback.STATUS_EFFECT.addPhaseOrdering(Event.DEFAULT_PHASE, LATE_PHASE);
+        GatherDescriptionCallback.STATUS_EFFECT.register(LATE_PHASE, DefaultDescriptions::forStatusEffect);
     }
 
     public record VisitableTextContent(StringVisitable content) implements TextContent {
@@ -158,10 +133,5 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
         public <T> Optional<T> visit(StringVisitable.Visitor<T> visitor) {
             return content.visit(visitor);
         }
-    }
-
-    public static void clearCache() {
-        ENCHANTMENT_CACHE.clear();
-        EFFECT_CACHE.clear();
     }
 }
