@@ -20,30 +20,58 @@ public final class DefaultDescriptions {
     private DefaultDescriptions() {}
 
     /**
-     * Get the default description (as provided through {@code <enchantment translation key>.desc}) for
-     * {@code enchantment} or {@code null} if no description is provided by any language file and
+     * Get the raw, unformatted, translated form of {@code enchantment}'s description (as provided through
+     * {@code <enchantment translation key>.desc}) for {@code enchantment}, or {@code null} if no description
+     * is provided by any language file and {@link IdwtialsimmoedmConfig#hideMissingDescriptions} is {@code true}
+     */
+    public static @Nullable Text forEnchantmentRaw(Enchantment enchantment) {
+        var translationKey = enchantment.getTranslationKey() + ".desc";
+        if (IdwtialsimmoedmConfig.get().hideMissingDescriptions && !Language.getInstance().hasTranslation(translationKey)) {
+            return null;
+        }
+
+        return Text.translatable(translationKey);
+    }
+
+    /**
+     * Get the default description (as provided by {@link #forEnchantmentRaw(Enchantment)}) for
+     * {@code enchantment}, or {@code null} if no description is provided by any language file and
      * {@link IdwtialsimmoedmConfig#hideMissingDescriptions} is {@code true}
      */
-    public static @Nullable List<Text> forEnchantment(Enchantment enchantment) {
+    public static @Nullable List<Text> forEnchantmentFormatted(Enchantment enchantment) {
         return ENCHANTMENT_CACHE.computeIfAbsent(enchantment, $ -> {
-            var translationKey = enchantment.getTranslationKey() + ".desc";
-            if (IdwtialsimmoedmConfig.get().hideMissingDescriptions && !Language.getInstance().hasTranslation(translationKey)) {return null;}
+            var raw = forEnchantmentRaw(enchantment);
+            if (raw == null) return null;
 
-            return GatherDescriptionCallback.wrapDescription(Text.translatable(translationKey));
+            return GatherDescriptionCallback.wrapDescription(raw);
         });
     }
 
     /**
-     * Get the default description (as provided through {@code <effect translation key>.desc}) for
-     * {@code effect} or {@code null} if no description is provided by any language file and
+     * Get the raw, unformatted, translated form of {@code effect}'s description (as provided through
+     * {@code <effect translation key>.desc}) for {@code enchantment}, or {@code null} if no description
+     * is provided by any language file and {@link IdwtialsimmoedmConfig#hideMissingDescriptions} is {@code true}
+     */
+    public static @Nullable Text forStatusEffectRaw(StatusEffect effect) {
+        var translationKey = effect.getTranslationKey() + ".desc";
+        if (IdwtialsimmoedmConfig.get().hideMissingDescriptions && !Language.getInstance().hasTranslation(translationKey)) {
+            return null;
+        }
+
+        return Text.translatable(translationKey);
+    }
+
+    /**
+     * Get the default description (as provided by {@link #forStatusEffectRaw(StatusEffect)}) for
+     * {@code effect}, or {@code null} if no description is provided by any language file and
      * {@link IdwtialsimmoedmConfig#hideMissingDescriptions} is {@code true}
      */
-    public static @Nullable List<Text> forStatusEffect(StatusEffect effect) {
+    public static @Nullable List<Text> forStatusEffectFormatted(StatusEffect effect) {
         return EFFECT_CACHE.computeIfAbsent(effect, $ -> {
-            var translationKey = effect.getTranslationKey() + ".desc";
-            if (IdwtialsimmoedmConfig.get().hideMissingDescriptions && !Language.getInstance().hasTranslation(translationKey)) {return null;}
+            var raw = forStatusEffectRaw(effect);
+            if (raw == null) return null;
 
-            return GatherDescriptionCallback.wrapDescription(Text.translatable(translationKey));
+            return GatherDescriptionCallback.wrapDescription(raw);
         });
     }
 
