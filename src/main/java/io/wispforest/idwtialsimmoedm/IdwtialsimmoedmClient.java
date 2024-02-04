@@ -118,10 +118,10 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
         });
 
         GatherDescriptionCallback.ENCHANTMENT.addPhaseOrdering(Event.DEFAULT_PHASE, LATE_PHASE);
-        GatherDescriptionCallback.ENCHANTMENT.register(LATE_PHASE, DefaultDescriptions::forEnchantment);
+        GatherDescriptionCallback.ENCHANTMENT.register(LATE_PHASE, DefaultDescriptions::forEnchantmentFormatted);
 
         GatherDescriptionCallback.STATUS_EFFECT.addPhaseOrdering(Event.DEFAULT_PHASE, LATE_PHASE);
-        GatherDescriptionCallback.STATUS_EFFECT.register(LATE_PHASE, DefaultDescriptions::forStatusEffect);
+        GatherDescriptionCallback.STATUS_EFFECT.register(LATE_PHASE, DefaultDescriptions::forStatusEffectFormatted);
     }
 
     public record VisitableTextContent(StringVisitable content) implements TextContent {
