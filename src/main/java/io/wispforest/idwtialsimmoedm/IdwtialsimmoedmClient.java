@@ -11,6 +11,8 @@ import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.EnchantedBookItem;
@@ -22,6 +24,7 @@ import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.HashSet;
 import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
@@ -46,7 +49,7 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
             }
         });
 
-        ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
+        ItemTooltipCallback.EVENT.register((stack, context, type, lines) -> {
             if (IdwtialsimmoedmConfig.get().displayOnlyWhenShiftIsHeld) {
                 if (!Screen.hasShiftDown()) return;
             }
@@ -55,10 +58,13 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
                 if (!(stack.getItem() instanceof EnchantedBookItem)) return;
             }
 
-            final var enchantments = EnchantmentHelper.get(stack).keySet();
+            final var enchantments = new HashSet<>(stack.getEnchantments().getEnchantments());
+            enchantments.addAll(stack.getOrDefault(DataComponentTypes.STORED_ENCHANTMENTS, ItemEnchantmentsComponent.DEFAULT).getEnchantments());
             if (enchantments.isEmpty()) return;
 
-            for (var enchantment : enchantments) {
+            for (var enchantmentEntry : enchantments) {
+                var enchantment = enchantmentEntry.value();
+
                 for (int i = 0; i < lines.size(); i++) {
                     if (!(lines.get(i).getContent() instanceof TranslatableTextContent text)) continue;
                     if (!text.getKey().equals(enchantment.getTranslationKey())) continue;
@@ -73,7 +79,7 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
             }
         });
 
-        ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
+        ItemTooltipCallback.EVENT.register((stack, context, type, lines) -> {
             if (IdwtialsimmoedmConfig.get().displayOnlyWhenShiftIsHeld) {
                 if (!Screen.hasShiftDown()) return;
             }

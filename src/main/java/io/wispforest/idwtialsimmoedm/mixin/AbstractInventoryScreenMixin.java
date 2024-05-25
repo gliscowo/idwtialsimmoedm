@@ -42,7 +42,7 @@ public abstract class AbstractInventoryScreenMixin extends HandledScreen<ScreenH
 
     @Inject(method = "drawStatusEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawTooltip(Lnet/minecraft/client/font/TextRenderer;Ljava/util/List;Ljava/util/Optional;II)V"), locals = LocalCapture.CAPTURE_FAILHARD)
     private void addDescription(DrawContext context, int mouseX, int mouseY, CallbackInfo ci, int i, int j, Collection<?> collection, boolean bl, int k, Iterable<StatusEffectInstance> iterable, int l, StatusEffectInstance statusEffectInstance, List<Text> tooltip) {
-        var description = GatherDescriptionCallback.STATUS_EFFECT.invoker().gatherDescription(statusEffectInstance.getEffectType());
+        var description = GatherDescriptionCallback.STATUS_EFFECT.invoker().gatherDescription(statusEffectInstance.getEffectType().value());
         if (description == null) return;
 
         tooltip.clear();
@@ -68,7 +68,7 @@ public abstract class AbstractInventoryScreenMixin extends HandledScreen<ScreenH
 
             if (hoveredEffect == null) return;
 
-            var description = GatherDescriptionCallback.STATUS_EFFECT.invoker().gatherDescription(hoveredEffect.getEffectType());
+            var description = GatherDescriptionCallback.STATUS_EFFECT.invoker().gatherDescription(hoveredEffect.getEffectType().value());
             if (description == null) return;
 
             var tooltip = new ArrayList<Text>();
