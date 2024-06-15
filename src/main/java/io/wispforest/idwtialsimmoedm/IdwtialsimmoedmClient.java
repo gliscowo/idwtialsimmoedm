@@ -31,7 +31,7 @@ import java.util.Optional;
 public class IdwtialsimmoedmClient implements ClientModInitializer {
 
     public static final Logger LOGGER = LogManager.getLogger("idwtialsimmoedm");
-    private static final Identifier LATE_PHASE = new Identifier("idwtialsimmoedm", "descriptions");
+    private static final Identifier LATE_PHASE = Identifier.of("idwtialsimmoedm", "descriptions");
 
     @Override
     public void onInitializeClient() {
@@ -40,7 +40,7 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
         ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
             @Override
             public Identifier getFabricId() {
-                return new Identifier("idwtialsimmoedm", "cache-yeeter");
+                return Identifier.of("idwtialsimmoedm", "cache-yeeter");
             }
 
             @Override
@@ -66,8 +66,7 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
                 var enchantment = enchantmentEntry.value();
 
                 for (int i = 0; i < lines.size(); i++) {
-                    if (!(lines.get(i).getContent() instanceof TranslatableTextContent text)) continue;
-                    if (!text.getKey().equals(enchantment.getTranslationKey())) continue;
+                    if (!lines.get(i).getContent().equals(enchantment.description().getContent())) continue;
 
                     var description = GatherDescriptionCallback.ENCHANTMENT.invoker().gatherDescription(enchantment);
                     if (description == null) return;
@@ -110,7 +109,7 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
 
                 String namespace = key.substring(firstDot + 1, secondDot);
                 String path = key.substring(secondDot + 1);
-                StatusEffect effect = Registries.STATUS_EFFECT.get(new Identifier(namespace, path));
+                StatusEffect effect = Registries.STATUS_EFFECT.get(Identifier.of(namespace, path));
 
                 if (effect == null) continue;
 

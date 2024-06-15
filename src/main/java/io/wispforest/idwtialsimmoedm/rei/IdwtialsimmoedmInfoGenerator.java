@@ -1,5 +1,7 @@
 package io.wispforest.idwtialsimmoedm.rei;
 
+import io.wispforest.idwtialsimmoedm.api.DefaultDescriptions;
+import io.wispforest.idwtialsimmoedm.api.GatherDescriptionCallback;
 import me.shedaniel.rei.api.client.registry.display.DynamicDisplayGenerator;
 import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.entry.type.VanillaEntryTypes;
@@ -36,8 +38,8 @@ public class IdwtialsimmoedmInfoGenerator implements DynamicDisplayGenerator<Def
         for (var enchantmentEntry : enchantments.getEnchantments()) {
             var enchantment = enchantmentEntry.value();
 
-            final var display = DefaultInformationDisplay.createFromEntry(entry, Text.translatable(enchantment.getTranslationKey()));
-            display.line(Text.translatable(enchantment.getTranslationKey() + ".desc"));
+            final var display = DefaultInformationDisplay.createFromEntry(entry, enchantment.description());
+            display.lines(GatherDescriptionCallback.ENCHANTMENT.invoker().gatherDescription(enchantment));
 
             displayList.add(display);
         }

@@ -4,6 +4,7 @@ import io.wispforest.idwtialsimmoedm.IdwtialsimmoedmConfig;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Language;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
@@ -25,7 +26,13 @@ public final class DefaultDescriptions {
      * is provided by any language file and {@link IdwtialsimmoedmConfig#hideMissingDescriptions} is {@code true}
      */
     public static @Nullable Text forEnchantmentRaw(Enchantment enchantment) {
-        var translationKey = enchantment.getTranslationKey() + ".desc";
+        String translationKey;
+        if (enchantment.description().getContent() instanceof TranslatableTextContent translatable) {
+            translationKey = translatable.getKey() + ".desc";
+        } else {
+            return null;
+        }
+
         if (IdwtialsimmoedmConfig.get().hideMissingDescriptions && !Language.getInstance().hasTranslation(translationKey)) {
             return null;
         }
