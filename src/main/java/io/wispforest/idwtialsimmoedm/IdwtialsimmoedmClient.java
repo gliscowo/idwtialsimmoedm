@@ -82,12 +82,18 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
 
                 if (line.getContent() instanceof TranslatableTextContent translatable
                         && translatable.getKey().equals("potion.withDuration")) {
-                    line = (Text) translatable.getArgs()[0];
+                    var arg = translatable.getArgs()[0];
+                    if (!(arg instanceof Text text)) continue;
+
+                    line = text;
                 }
 
                 if (line.getContent() instanceof TranslatableTextContent translatable
                         && translatable.getKey().equals("potion.withAmplifier")) {
-                    line = (Text) translatable.getArgs()[0];
+                    var arg = translatable.getArgs()[0];
+                    if (!(arg instanceof Text text)) continue;
+
+                    line = text;
                 }
 
                 if (!(line.getContent() instanceof TranslatableTextContent translatable)) continue;
