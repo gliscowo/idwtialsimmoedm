@@ -35,7 +35,7 @@
   "enchantment.minecraft.mending.desc": "The enchanted item can be repaired by picking up experience orbs",
   "enchantment.minecraft.binding_curse.desc": "The cursed item cannot be removed from an armor slot anymore",
   "enchantment.minecraft.vanishing_curse.desc": "The cursed item will disappear when you die",
-  "enchantment.minecraft.sweeping.desc": "Increased damage to enemies caught in the sweeping attack of a sword",
+  "enchantment.minecraft.sweeping_edge.desc": "Increased damage to enemies caught in the sweeping attack of a sword",
   "enchantment.minecraft.loyalty.desc": "The Trident will return to you after being thrown",
   "enchantment.minecraft.impaling.desc": "Increased damage when the Trident is used to attack an Aquatic Mob",
   "enchantment.minecraft.riptide.desc": "Allows the Trident to launch you when standing in rain or water",
