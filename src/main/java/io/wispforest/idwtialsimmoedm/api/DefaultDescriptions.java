@@ -60,12 +60,17 @@ public final class DefaultDescriptions {
      * is provided by any language file and {@link IdwtialsimmoedmConfig#hideMissingDescriptions} is {@code true}
      */
     public static @Nullable Text forStatusEffectRaw(StatusEffect effect) {
-        var translationKey = effect.getTranslationKey() + ".desc";
-        if (IdwtialsimmoedmConfig.get().hideMissingDescriptions && !Language.getInstance().hasTranslation(translationKey)) {
+        var primaryTranslationKey = effect.getTranslationKey() + ".desc";
+        var secondaryTranslationKey = effect.getTranslationKey() + ".description";
+
+        if (Language.getInstance().hasTranslation(primaryTranslationKey)) return Text.translatable(primaryTranslationKey);
+        if (Language.getInstance().hasTranslation(secondaryTranslationKey)) return Text.translatable(secondaryTranslationKey);
+
+        if (IdwtialsimmoedmConfig.get().hideMissingDescriptions) {
             return null;
         }
 
-        return Text.translatable(translationKey);
+        return Text.translatable(primaryTranslationKey);
     }
 
     /**

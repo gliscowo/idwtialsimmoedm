@@ -68,7 +68,7 @@
   "effect.minecraft.fire_resistance.desc": "Immunity to fire damage",
   "effect.minecraft.speed.desc": "Greater movement speed while on ground",
   "effect.minecraft.slowness.desc": "Significantly decreased movement speed on ground",
-  "effect.minecraft.resistance.desc": "Substantial resistance do damage from all sources",
+  "effect.minecraft.resistance.desc": "Substantial resistance to damage from all sources",
   "effect.minecraft.water_breathing.desc": "Infinite oxygen while underwater",
   "effect.minecraft.instant_health.desc": "Instant, one-time health boost",
   "effect.minecraft.instant_damage.desc": "Instant, one-time magic damage",
