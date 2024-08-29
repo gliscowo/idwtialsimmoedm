@@ -35,7 +35,7 @@
   "enchantment.minecraft.mending.desc": "The enchanted item can be repaired by picking up experience orbs",
   "enchantment.minecraft.binding_curse.desc": "The cursed item cannot be removed from an armor slot anymore",
   "enchantment.minecraft.vanishing_curse.desc": "The cursed item will disappear when you die",
-  "enchantment.minecraft.sweeping.desc": "Increased damage to enemies caught in the sweeping attack of a sword",
+  "enchantment.minecraft.sweeping_edge.desc": "Increased damage to enemies caught in the sweeping attack of a sword",
   "enchantment.minecraft.loyalty.desc": "The Trident will return to you after being thrown",
   "enchantment.minecraft.impaling.desc": "Increased damage when the Trident is used to attack an Aquatic Mob",
   "enchantment.minecraft.riptide.desc": "Allows the Trident to launch you when standing in rain or water",
@@ -45,6 +45,8 @@
   "enchantment.minecraft.piercing.desc": "Arrows fired from the Crossbow will pierce through multiple enemies at once",
   "enchantment.minecraft.soul_speed.desc": "Greater walking speed on Soul Sand and Soul Soil",
   "enchantment.minecraft.swift_sneak.desc": "Enhanced movement speed while sneaking",
+  "enchantment.minecraft.breach.desc": "Reduces the effectiveness of the target's armor",
+  "enchantment.minecraft.density.desc": "Increases damage the higher you fall",
 
   "effect.minecraft.night_vision.desc": "Improved vision in darkness",
   "effect.minecraft.absorption.desc": "Temporary, non-regenerating extra health",
@@ -78,5 +80,9 @@
   "effect.minecraft.weakness.desc": "Significantly reduced attack strength",
   "effect.minecraft.luck.desc": "Improved luck in some circumstances, primarily fishing",
   "effect.minecraft.unluck.desc": "Bad luck in some circumstances, primarily fishing",
-  "effect.minecraft.wither.desc": "Applies damage to the affected over time"
+  "effect.minecraft.wither.desc": "Applies damage to the affected over time",
+  "effect.minecraft.infested.desc": "The affected has a low chance of spawning silverfish when hurt",
+  "effect.minecraft.oozing.desc": "The affected spawns slimes upon death",
+  "effect.minecraft.weaving.desc": "The affected spawns cobwebs upon death",
+  "effect.minecraft.wind_charged.desc": "The affected emits a burst of wind upon death"
 }
