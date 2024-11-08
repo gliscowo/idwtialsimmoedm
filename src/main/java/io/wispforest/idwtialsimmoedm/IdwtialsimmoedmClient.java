@@ -13,9 +13,8 @@ import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.item.EnchantedBookItem;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
@@ -55,7 +54,7 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
             }
 
             if (IdwtialsimmoedmConfig.get().displayOnBooksOnly) {
-                if (!(stack.getItem() instanceof EnchantedBookItem)) return;
+                if (stack.getItem() != Items.ENCHANTED_BOOK) return;
             }
 
             final var enchantments = new HashSet<>(stack.getEnchantments().getEnchantments());
@@ -87,7 +86,7 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
                 Text line = lines.get(i);
 
                 if (line.getContent() instanceof TranslatableTextContent translatable
-                        && translatable.getKey().equals("potion.withDuration")) {
+                    && translatable.getKey().equals("potion.withDuration")) {
                     var arg = translatable.getArgs()[0];
                     if (!(arg instanceof Text text)) continue;
 
@@ -95,7 +94,7 @@ public class IdwtialsimmoedmClient implements ClientModInitializer {
                 }
 
                 if (line.getContent() instanceof TranslatableTextContent translatable
-                        && translatable.getKey().equals("potion.withAmplifier")) {
+                    && translatable.getKey().equals("potion.withAmplifier")) {
                     var arg = translatable.getArgs()[0];
                     if (!(arg instanceof Text text)) continue;
 
